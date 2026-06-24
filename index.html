@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMM Studio — Stratégie Réseaux Sociaux</title>
+    <link rel="icon" type="image/png" href="images/logo gpt.png">
+    <link rel="apple-touch-icon" href="images/logo gpt.png">
+    <meta name="description" content="Social Media Manager premium. Je transforme votre présence sociale en actif stratégique qui attire, engage et convertit.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─────────────────────────────────────────
+           RESET & VARIABLES
+        ───────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bd:       #6b0e29;
+            --bd-h:     #8a1535;
+            --black:    #1c1c1e;
+            --white:    #FFFFFF;
+            --off:      #F8F7F6;
+            --gray:     #888888;
+            --gray-l:   #E5E3E1;
+            --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--black);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ─────────────────────────────────────────
+           ANIMATIONS
+        ───────────────────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        .d1 { transition-delay: 0.10s; }
+        .d2 { transition-delay: 0.20s; }
+        .d3 { transition-delay: 0.30s; }
+        .d4 { transition-delay: 0.42s; }
+        .d5 { transition-delay: 0.54s; }
+
+        /* Hero enters on load */
+        .hero-animate {
+            opacity: 0;
+            transform: translateY(28px);
+            animation: heroIn 0.9s var(--ease) forwards;
+        }
+        .ha1 { animation-delay: 0.15s; }
+        .ha2 { animation-delay: 0.30s; }
+        .ha3 { animation-delay: 0.45s; }
+        .ha4 { animation-delay: 0.62s; }
+        .ha5 { animation-delay: 0.80s; }
+        .ha6 { animation-delay: 1.00s; }
+
+        @keyframes heroIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─────────────────────────────────────────
+           HEADER
+        ───────────────────────────────────────── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 900;
+            height: 76px;
+            padding: 0 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+        }
+        header.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.07);
+        }
+
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.06em;
+            color: var(--black);
+            text-decoration: none;
+        }
+        .logo em { color: var(--bd); font-style: normal; }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+        nav a {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0;
+            width: 0; height: 1px;
+            background: var(--bd);
+            transition: width 0.35s var(--ease);
+        }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a.active { color: var(--bd); }
+
+        .nav-cta {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 0.75rem !important;
+            letter-spacing: 0.14em !important;
+            color: var(--white) !important;
+            background: var(--bd);
+            padding: 11px 26px;
+            transition: background 0.3s, transform 0.3s !important;
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--bd-h) !important; transform: translateY(-1px) !important; }
+
+        /* Hamburger */
+        .ham {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 4px;
+        }
+        .ham span {
+            display: block;
+            width: 22px; height: 1.5px;
+            background: var(--black);
+            transition: transform 0.4s var(--ease), opacity 0.4s;
+        }
+        .ham.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .ham.open span:nth-child(2) { opacity: 0; }
+        .ham.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* Mobile nav overlay */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 800;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+        .nav-overlay.open { display: flex; }
+        .nav-overlay a {
+            font-size: 1.5rem !important;
+            letter-spacing: 0.08em !important;
+        }
+
+        /* ─────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────── */
+        #accueil {
+            min-height: 100vh;
+            padding: 10rem 64px 90px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative vertical line */
+        #accueil::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 22%;
+            width: 1px; height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(122,30,52,0.12) 40%, rgba(122,30,52,0.12) 60%, transparent 100%);
+        }
+
+        .hero-wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--bd);
+            margin-bottom: 28px;
+        }
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 36px; height: 1px;
+            background: var(--bd);
+        }
+
+        .hero-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.2rem, 6.5vw, 5.6rem);
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+        .hero-title .acc { color: var(--bd); }
+
+        .hero-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+            font-style: italic;
+            color: #5A5A5A;
+            max-width: 500px;
+            margin-bottom: 52px;
+        }
+        .hero-sub-2 {
+            display: block;
+            margin-top: 0.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* Primary CTA */
+        .btn-p {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 19px 44px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s var(--ease), box-shadow 0.3s;
+        }
+        .btn-p::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--bd);
+            transition: left 0.42s var(--ease);
+        }
+        .btn-p > * { position: relative; z-index: 1; }
+        .btn-p:hover::before { left: 0; }
+        .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
+        .btn-p .arr { transition: transform 0.3s; }
+        .btn-p:hover .arr { transform: translateX(5px); }
+
+
+        /* Photo frame */
+        .hero-frame {
+            position: relative;
+        }
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            top: 22px; right: -22px;
+            width: 100%; height: 100%;
+            border: 1px solid var(--bd);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        /* ─────────────────────────────────────────
+           SECTION GLOBALS
+        ───────────────────────────────────────── */
+        section { padding: 120px 64px; }
+
+        .s-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .s-label {
+            font-size: 0.67rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--bd);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .s-label::before {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--bd);
+        }
+
+        .s-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 56px; height: 1px;
+            background: var(--bd);
+            margin: 30px 0;
+        }
+
+        /* ─────────────────────────────────────────
+           PROBLEMS
+        ───────────────────────────────────────── */
+        #problemes { background: #faf7f5; padding-bottom: 2rem; }
+        #offre { padding: 6rem 64px; background: var(--off); }
+
+        .prob-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--bd);
+            border: 1px solid rgba(107,14,41,0.3);
+            padding: 8px 18px;
+            margin-bottom: 36px;
+        }
+
+        .prob-heading {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(1.9rem, 3.8vw, 3.1rem);
+            text-transform: uppercase;
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+            color: var(--black);
+            margin-bottom: 1.2rem;
+        }
+
+        .prob-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.85;
+            color: #777;
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+
+        .prob-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .prob-card {
+            background: var(--white);
+            padding: 44px 36px;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03), inset 3px 0 0 transparent;
+            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                        box-shadow 0.3s cubic-bezier(0.16,1,0.3,1),
+                        opacity 0.3s cubic-bezier(0.16,1,0.3,1);
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+        .prob-card:hover:not(.active) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.04), inset 3px 0 0 transparent;
+        }
+        .prob-card.active {
+            transform: scale(1.03);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 4px 12px rgba(0,0,0,0.06), inset 3px 0 0 var(--bd);
+            z-index: 3;
+        }
+        .prob-card.dimmed { opacity: 0.6; }
+
+        .prob-icon {
+            color: var(--bd);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .prob-t {
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--black);
+            margin-bottom: 14px;
+            transition: color 250ms ease;
+        }
+        .prob-card:hover .prob-t { color: #6b0e29; }
+
+        .prob-d {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.9rem;
+            font-style: normal;
+            line-height: 1.78;
+            color: #666;
+            max-height: 3.4rem;
+            overflow: hidden;
+            opacity: 0.72;
+            transition: max-height 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s cubic-bezier(0.16,1,0.3,1);
+        }
+        .prob-card.active .prob-d {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        /* Card stagger delays */
+        .sg1 { transition-delay: 0ms; }
+        .sg2 { transition-delay: 80ms; }
+        .sg3 { transition-delay: 160ms; }
+        .sg4 { transition-delay: 240ms; }
+        .sg5 { transition-delay: 320ms; }
+        .sg6 { transition-delay: 400ms; }
+
+        .prob-transition {
+            background: #6b0e29;
+            padding: 5rem 64px;
+            text-align: center;
+            border-top: 1px solid rgba(250,247,245,0.2);
+            border-bottom: 1px solid rgba(250,247,245,0.2);
+        }
+        .prob-transition p {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #faf7f5;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .pt-cta {
+            display: inline-block;
+            color: #faf7f5;
+            border: 1px solid rgba(250,247,245,0.65);
+            padding: 16px 44px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 300ms ease, color 300ms ease;
+        }
+        .pt-cta:hover { background: #faf7f5; color: #6b0e29; }
+
+        .section-sep {
+            width: 80px;
+            height: 1px;
+            background: rgba(107,14,41,0.3);
+            margin: 0 auto;
+        }
+
+        /* ─────────────────────────────────────────
+           OFFER
+        ───────────────────────────────────────── */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .offer-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            text-transform: uppercase;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
+            color: var(--black);
+            margin-bottom: 2.5rem;
+        }
+        .offer-title br { display: block; margin-bottom: 0.8rem; }
+
+        .offer-lines p { font-size: 0.97rem; line-height: 1.9; color: #5A5A5A; margin-bottom: 0.8rem; }
+        .offer-lines p:last-child { margin-bottom: 0; }
+
+        .offer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--bd);
+            border: 1px solid rgba(107,14,41,0.4);
+            padding: 8px 16px;
+            margin-bottom: 28px;
+        }
+        .offer-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--bd);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+            flex-shrink: 0;
+        }
+        @keyframes blink {
+            0%,100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        .offer-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--bd);
+            padding: 18px 44px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .offer-cta:hover {
+            background: var(--bd-h);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107,14,41,0.28);
+        }
+
+        /* Right card */
+        .offer-card {
+            background: var(--white);
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card-title {
+            font-family: 'Playfair Display', serif;
+            font-variant: small-caps;
+            font-size: 1.05rem;
+            letter-spacing: 0.1em;
+            color: var(--bd);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .offer-card-sub {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 32px;
+        }
+
+        .offer-steps { display: flex; flex-direction: column; }
+
+        .offer-step {
+            padding-bottom: 1.4rem;
+            margin-bottom: 1.4rem;
+            position: relative;
+            transition: box-shadow 250ms ease, padding-left 250ms ease;
+        }
+        .offer-step:hover { box-shadow: inset 2px 0 0 var(--bd); padding-left: 10px; }
+        .offer-step:last-child { margin-bottom: 0; padding-bottom: 0; }
+
+        .step-num {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            color: var(--bd);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+            display: inline-block;
+            transition: transform 250ms ease;
+        }
+        .offer-step:hover .step-num { transform: scale(1.1); }
+
+        .step-title {
+            font-size: 0.73rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 8px;
+            transition: color 250ms ease;
+        }
+        .offer-step:hover .step-title { color: var(--bd); }
+
+        .step-items {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .step-items li {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.84rem;
+            color: #555;
+            line-height: 1.55;
+            padding-left: 18px;
+            position: relative;
+        }
+        .step-items li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: rgba(107,14,41,0.45);
+        }
+
+        .offer-engagement {
+            margin-top: 32px;
+            padding: 13px 18px;
+            border: 1px solid rgba(107,14,41,0.3);
+            text-align: center;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bd);
+            opacity: 0;
+            transition: opacity 400ms ease;
+        }
+        .offer-engagement.fade-in { opacity: 1; }
+
+        /* ─── Offer card animations ─── */
+
+        /* Entrance: stronger translateY for offer-right */
+        .offer-right.reveal { transform: translateY(60px); }
+        .offer-right.reveal.in { transform: translateY(0); }
+        .offer-right {
+            transition: opacity 800ms cubic-bezier(0.16,1,0.3,1),
+                        transform 800ms cubic-bezier(0.16,1,0.3,1) !important;
+        }
+
+        /* Border-top sweep */
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            height: 3px;
+            background: var(--bd);
+            width: 0;
+            transition: width 600ms cubic-bezier(0.16,1,0.3,1);
+        }
+        .offer-card.border-animated::before { width: 100%; }
+
+        /* Separator lines (replaces border-bottom on .offer-step) */
+        .offer-step::after {
+            content: '';
+            display: block;
+            height: 1px;
+            background: rgba(107,14,41,0.15);
+            margin-top: 1.4rem;
+            width: 0;
+            transition: width 500ms cubic-bezier(0.16,1,0.3,1);
+        }
+        .offer-step:last-child::after { display: none; }
+        .offer-step.sep-animated::after { width: 100%; }
+
+        /* prefers-reduced-motion: skip all offer animations */
+        @media (prefers-reduced-motion: reduce) {
+            .offer-right { transition: opacity 0.1s !important; }
+            .offer-card::before { transition: none; width: 100%; }
+            .offer-step::after { transition: none; width: 100%; }
+            .offer-engagement { transition: none; opacity: 1; }
+            .step-num { transition: none; }
+            .step-title { transition: none; }
+            .offer-step { transition: none; }
+        }
+
+        /* ─────────────────────────────────────────
+           DIAGNOSTIC / FORM
+        ───────────────────────────────────────── */
+        #diagnostic { background: var(--white); }
+
+        iframe { border: none !important; outline: none !important; }
+
+        .diag-alt {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .diag-or {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+            color: #9e9a94;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+        }
+        .diag-or::before,
+        .diag-or::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-l);
+        }
+        .diag-alt-label {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #9e9a94;
+            margin-bottom: 1rem;
+        }
+        .diag-alt-btn {
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bd);
+            border: 1px solid var(--bd);
+            padding: 14px 36px;
+            text-decoration: none;
+            transition: background 250ms ease, color 250ms ease;
+        }
+        .diag-alt-btn:hover { background: var(--bd); color: var(--white); }
+
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .form-intro {
+            font-size: 0.97rem;
+            line-height: 1.9;
+            color: #5A5A5A;
+            margin-bottom: 24px;
+        }
+
+        .form-promise {
+            border-left: 2px solid var(--bd);
+            padding: 18px 24px;
+            margin-top: 48px;
+        }
+        .form-promise p {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Form */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-g {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-g label {
+            font-size: 0.67rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+        .form-g input,
+        .form-g select,
+        .form-g textarea {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            color: var(--black);
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--gray-l);
+            padding: 12px 0;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        .form-g input::placeholder,
+        .form-g textarea::placeholder { color: rgba(0,0,0,0.22); }
+        .form-g input:focus,
+        .form-g select:focus,
+        .form-g textarea:focus { border-bottom-color: var(--bd); }
+        .form-g textarea { resize: none; height: 78px; }
+        .form-g select { appearance: none; cursor: pointer; color: var(--black); }
+        .form-g select option:first-child { color: rgba(0,0,0,0.4); }
+
+        .btn-form {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            border: none;
+            padding: 20px 44px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            margin-top: 4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+        .btn-form::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: var(--bd);
+            transition: left 0.42s var(--ease);
+        }
+        .btn-form > span { position: relative; z-index: 1; }
+        .btn-form:hover::before { left: 0; }
+        .btn-form:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.18); }
+        .btn-form.sent { background: var(--bd); }
+        .btn-form.sent::before { display: none; }
+
+        /* Radio & checkbox custom */
+        .form-radio-group,
+        .form-check-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 4px;
+        }
+        .form-radio,
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            color: var(--black);
+        }
+        .form-radio input[type="radio"],
+        .form-check input[type="checkbox"] {
+            appearance: none;
+            width: 16px; height: 16px;
+            border: 1px solid var(--gray-l);
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            transition: border-color 0.2s;
+            border-radius: 0;
+            padding: 0;
+        }
+        .form-radio input[type="radio"] { border-radius: 50%; }
+        .form-radio input[type="radio"]:checked,
+        .form-check input[type="checkbox"]:checked {
+            border-color: var(--bd);
+            background: var(--bd);
+        }
+        .form-radio input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--white);
+        }
+        .form-check input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        /* Validation */
+        @keyframes shake {
+            0%,100% { transform: translateX(0); }
+            25%      { transform: translateX(-5px); }
+            75%      { transform: translateX(5px); }
+        }
+        .field-err {
+            display: none;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: var(--bd);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+        .field-err.visible { display: block; }
+        .grp-err { animation: shake 300ms ease; }
+        .grp-err > input,
+        .grp-err > textarea,
+        .grp-err > select,
+        .grp-err input,
+        .grp-err textarea,
+        .grp-err select { border-bottom-color: var(--bd) !important; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Success state */
+        .diag-success {
+            display: none;
+            background: transparent;
+        }
+        .diag-success.visible { display: block; animation: fadeUp 600ms var(--ease) both; }
+
+        /* ─────────────────────────────────────────
+           FAQ
+        ───────────────────────────────────────── */
+        #faq { background: var(--off); }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        .faq-aside-note {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-top: 20px;
+        }
+        .faq-aside-note a {
+            color: var(--bd);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .faq-aside-note a:hover { opacity: 0.7; }
+
+        .faq-list { display: flex; flex-direction: column; }
+
+        .faq-item { border-bottom: 1px solid var(--gray-l); }
+
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding: 26px 0;
+            cursor: pointer;
+        }
+        .faq-q-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            line-height: 1.45;
+            transition: color 0.3s;
+        }
+        .faq-q:hover .faq-q-text { color: var(--bd); }
+
+        .faq-ico {
+            flex-shrink: 0;
+            width: 22px; height: 22px;
+            position: relative;
+        }
+        .faq-ico::before,
+        .faq-ico::after {
+            content: '';
+            position: absolute;
+            background: var(--bd);
+        }
+        .faq-ico::before { width: 12px; height: 1px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+        .faq-ico::after { width: 1px; height: 12px; top: 50%; left: 50%; transform: translate(-50%,-50%); transition: transform 0.35s var(--ease), opacity 0.35s; }
+        .faq-item.open .faq-ico::after { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
+
+        .faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease); }
+        .faq-ans-inner {
+            padding-bottom: 26px;
+            font-size: 0.88rem;
+            line-height: 1.85;
+            color: #666;
+        }
+        .faq-item.open .faq-ans { max-height: 320px; }
+
+        /* ─────────────────────────────────────────
+           À PROPOS
+        ───────────────────────────────────────── */
+        #apropos { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-frame {
+            position: relative;
+        }
+        .about-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -20px; left: 20px;
+            width: 100%; height: 100%;
+            border: 1px solid var(--bd);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .about-photo {
+            width: 100%;
+            aspect-ratio: 4/5;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .about-txt {
+            font-size: 0.97rem;
+            line-height: 1.9;
+            color: #5A5A5A;
+            margin-bottom: 0.3rem;
+        }
+        .about-txt em { font-style: italic; color: var(--black); font-weight: 600; }
+
+        .about-sig {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--bd);
+            margin-top: 44px;
+        }
+
+        /* ─────────────────────────────────────────
+           FOOTER
+        ───────────────────────────────────────── */
+        footer {
+            background: var(--off);
+            border-top: 1px solid rgba(107,14,41,0.2);
+            padding: 3rem 64px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .f-email {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #9e9a94;
+            text-decoration: none;
+            transition: color 250ms ease;
+        }
+        .f-email:hover { color: var(--bd); }
+        .f-socials {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .f-socials a {
+            color: #9e9a94;
+            text-decoration: none;
+            transition: color 250ms ease;
+        }
+        .f-socials a:hover { color: var(--bd); }
+        .f-socials span { color: var(--bd); }
+        .f-copy {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+            color: #9e9a94;
+        }
+
+        /* ─────────────────────────────────────────
+           ANIMATIONS GLOBALES
+        ───────────────────────────────────────── */
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Scroll progress bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 2px;
+            width: 0%;
+            background: var(--bd);
+            z-index: 10000;
+            pointer-events: none;
+        }
+
+        /* Custom cursor (pointer devices only) */
+        @media (pointer: fine) {
+            body.cursor-ready * { cursor: none !important; }
+            .cursor {
+                width: 12px; height: 12px;
+                background: var(--bd);
+                border-radius: 50%;
+                position: fixed;
+                top: 0; left: 0;
+                pointer-events: none;
+                z-index: 99999;
+                will-change: transform;
+                transition:
+                    width 200ms cubic-bezier(0.16,1,0.3,1),
+                    height 200ms cubic-bezier(0.16,1,0.3,1),
+                    background 200ms cubic-bezier(0.16,1,0.3,1),
+                    border 200ms cubic-bezier(0.16,1,0.3,1),
+                    opacity 150ms ease;
+            }
+            .cursor.is-hover {
+                width: 24px; height: 24px;
+                background: transparent;
+                border: 1.5px solid var(--bd);
+            }
+            .cursor.is-hidden { opacity: 0; }
+        }
+
+        /* Nav underline on hover */
+        #nav-d a:not(.nav-cta) { position: relative; }
+        #nav-d a:not(.nav-cta)::after {
+            content: '';
+            position: absolute;
+            bottom: -3px; left: 0;
+            width: 100%; height: 1px;
+            background: var(--bd);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 250ms ease;
+        }
+        #nav-d a:not(.nav-cta):hover::after,
+        #nav-d a:not(.nav-cta).active::after { transform: scaleX(1); }
+
+
+        /* Ripple on buttons */
+        @keyframes ripple-anim {
+            to { transform: scale(2.5); opacity: 0; }
+        }
+        .ripple-wave {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(107,14,41,0.22);
+            transform: scale(0);
+            animation: ripple-anim 600ms ease-out forwards;
+            pointer-events: none;
+        }
+
+        /* prefers-reduced-motion: disable all added animations */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .cursor { display: none !important; }
+            body.cursor-ready * { cursor: auto !important; }
+            #scroll-progress { display: none; }
+            #nav-d a:not(.nav-cta)::after { transition: none; }
+            .ripple-wave { display: none !important; }
+        }
+
+        /* ─────────────────────────────────────────
+           RESPONSIVE
+        ───────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            header { padding: 0 40px; }
+            section { padding: 100px 40px; }
+            #accueil { padding: 120px 40px 80px; }
+
+            .hero-wrap { grid-template-columns: 1fr; gap: 60px; }
+            .hero-frame { order: -1; max-width: 380px; margin: 0 auto; width: 100%; }
+
+            .prob-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .prob-card.active { grid-column: 1 / -1; transform: scale(1.01); }
+            .offer-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .offer-right { order: -1; }
+            .diag-grid,
+            .about-grid { grid-template-columns: 1fr; gap: 56px; }
+            .faq-grid { grid-template-columns: 1fr; gap: 48px; }
+        }
+
+        @media (max-width: 720px) {
+            header { padding: 0 24px; }
+            section { padding: 80px 24px; }
+            #accueil { padding: 110px 24px 70px; }
+            footer { padding: 40px 24px; flex-direction: column; gap: 24px; text-align: center; }
+
+            nav { display: none; }
+            .ham { display: flex; }
+
+            .hero-title { font-size: 2.8rem; }
+            .hero-stats { gap: 28px; flex-wrap: wrap; }
+            .prob-grid { grid-template-columns: 1fr; gap: 16px; }
+            .form-row { grid-template-columns: 1fr; }
+            .offer-card { padding: 32px 24px; }
+            .offer-cta { width: 100%; }
+
+            .hero-frame::after { display: none; }
+            .about-frame::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div id="scroll-progress"></div>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+═══════════════════════════════════════ -->
+<header id="hdr">
+    <a href="#accueil" class="logo"><img src="images/logo gpt.png" alt="SMM.LENNA" style="height:105px;width:auto;object-fit:contain;display:block;"></a>
+
+    <nav id="nav-d">
+        <a href="#accueil">Accueil</a>
+        <a href="#problemes">Problèmes</a>
+        <a href="#offre">Offres</a>
+        <a href="#diagnostic">Diagnostic</a>
+        <a href="#faq">FAQ</a>
+        <a href="#apropos">À propos</a>
+        <a href="#diagnostic" class="nav-cta">Diagnostic gratuit</a>
+    </nav>
+
+    <div class="ham" id="ham" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="nav-m">
+    <a href="#accueil"    onclick="closeNav()">Accueil</a>
+    <a href="#problemes"  onclick="closeNav()">Problèmes</a>
+    <a href="#offre"      onclick="closeNav()">Offres</a>
+    <a href="#diagnostic" onclick="closeNav()">Diagnostic</a>
+    <a href="#faq"        onclick="closeNav()">FAQ</a>
+    <a href="#apropos"    onclick="closeNav()">À propos</a>
+    <a href="#diagnostic" class="nav-cta" onclick="closeNav()">Diagnostic gratuit</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section id="accueil">
+    <div class="hero-wrap">
+        <div class="hero-left">
+            <div class="hero-tag hero-animate ha1">Social Media Strategy</div>
+
+            <h1 class="hero-title hero-animate ha2">
+                Votre audience<br>est là.<br>
+                <span class="acc">Votre contenu,</span><br>non.
+            </h1>
+
+            <p class="hero-sub hero-animate ha3">
+                Je transforme votre présence en ligne en un actif stratégique qui attire, engage et convertit.<br>
+            <span class="hero-sub-2">Sans que vous ayez à y consacrer chaque heure de votre journée.</span>
+            </p>
+
+            <a href="#diagnostic" class="btn-p hero-animate ha4">
+                <span>Commencer maintenant</span>
+                <span class="arr">→</span>
+            </a>
+
+        </div>
+
+        <div class="hero-frame hero-animate ha6">
+            <div class="hero-photo">
+                <img src="images/lenna.jpeg" alt="Lenna — Social Media Manager">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PROBLÈMES
+═══════════════════════════════════════ -->
+<section id="problemes">
+    <div class="s-inner">
+
+        <div class="prob-badge reveal">Votre situation actuelle</div>
+        <h2 class="prob-heading reveal d1">Vous publiez du contenu,<br>mais les <span style="color:#6b0e29">résultats</span> ne suivent pas.</h2>
+        <p class="prob-subtitle reveal d2">Si vous vous reconnaissez dans l'une de ces situations, il est probable que votre stratégie de contenu freine votre croissance.</p>
+
+        <div class="prob-grid">
+
+            <div class="prob-card reveal sg1">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="16" cy="16" r="12"/>
+                        <polyline points="16,8 16,16 21,19"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">J'ai pas le temps</h3>
+                <p class="prob-d">Votre activité tourne, vos clients sont là, mais les réseaux passent toujours en dernier.<br><span style="color:var(--bd);font-style:normal;font-weight:600;">Résultat :</span> vous ne postez pas, ou de façon aléatoire.</p>
+            </div>
+
+            <div class="prob-card reveal sg2">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M26 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8l4 4 4-4h4a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+                        <line x1="11" y1="13" x2="11.01" y2="13"/>
+                        <line x1="16" y1="13" x2="16.01" y2="13"/>
+                        <line x1="21" y1="13" x2="21.01" y2="13"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">Je sais pas quoi poster</h3>
+                <p class="prob-d">Vous savez que vous devriez poster.<br>Mais quoi, comment, quand ?<br>Sans stratégie claire, vous restez bloqué.</p>
+            </div>
+
+            <div class="prob-card reveal sg3">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4,26 10,17 16,13 22,8"/>
+                        <polyline points="22,8 28,20"/>
+                        <line x1="4" y1="26" x2="28" y2="26"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">J'ai essayé mais j'ai lâché</h3>
+                <p class="prob-d">Vous avez commencé… puis abandonné.<br>Vous avez publié quelques contenus avec motivation, mais l'absence de résultats concrets a fini par freiner votre élan.<br>Aujourd'hui, vos réseaux sociaux sont passés au second plan.</p>
+            </div>
+
+            <div class="prob-card reveal sg4">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="10" cy="9" r="3.5"/>
+                        <path d="M3 27v-4a7 7 0 0 1 14 0v4"/>
+                        <circle cx="23" cy="7" r="3.5"/>
+                        <path d="M17 27v-6a7 7 0 0 1 14 0v6"/>
+                        <polyline points="19,12 24,7 29,12"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">Mes concurrents me passent devant</h3>
+                <p class="prob-d">Vous voyez des gens moins bons que vous cartonner en ligne.<br>Vous êtes fier de votre travail, frustré qu'il ne se voie pas.</p>
+            </div>
+
+            <div class="prob-card reveal sg5">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="4" width="10" height="10" rx="1"/>
+                        <rect x="18" y="4" width="10" height="10" rx="1"/>
+                        <rect x="4" y="18" width="10" height="10" rx="1"/>
+                        <line x1="18" y1="23" x2="28" y2="23"/>
+                        <line x1="23" y1="18" x2="23" y2="28"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">Ça ressemble à rien</h3>
+                <p class="prob-d">Votre profil est incohérent, pas à la hauteur de ce que vous faites vraiment.<br>Un prospect qui tombe dessus ne comprend pas ce que vous vendez.</p>
+            </div>
+
+            <div class="prob-card reveal sg6">
+                <span class="prob-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                        <circle cx="16" cy="16" r="3.5"/>
+                        <circle cx="6"  cy="8"  r="2.5"/>
+                        <circle cx="26" cy="8"  r="2.5"/>
+                        <circle cx="6"  cy="24" r="2.5"/>
+                        <circle cx="26" cy="24" r="2.5"/>
+                        <line x1="13" y1="13.8" x2="8.3"  y2="10.2"/>
+                        <line x1="19" y1="13.8" x2="23.7" y2="10.2"/>
+                        <line x1="13" y1="18.2" x2="8.3"  y2="21.8"/>
+                        <line x1="19" y1="18.2" x2="23.7" y2="21.8"/>
+                    </svg>
+                </span>
+                <h3 class="prob-t">Les réseaux c'est un monde à part</h3>
+                <p class="prob-d">Entre les algorithmes qui évoluent sans cesse, les tendances qui changent chaque semaine et les formats à maîtriser, il devient difficile de savoir où concentrer ses efforts.</p>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
+<div class="prob-transition">
+    <p>J'aide les entrepreneur(e)s à transformer leur présence en ligne en un véritable levier de visibilité, d'autorité et d'acquisition.<br>Grâce à une stratégie claire et un contenu pensé sur mesure, les réseaux sociaux deviennent un outil de croissance au service de votre activité, et non une tâche supplémentaire à gérer au quotidien.</p>
+    <a href="#offre" class="pt-cta">Découvrir l'offre →</a>
+</div>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     OFFRE
+═══════════════════════════════════════ -->
+<section id="offre">
+    <div class="s-inner">
+        <div class="offer-grid">
+
+            <!-- COLONNE GAUCHE -->
+            <div class="offer-left">
+                <div class="offer-badge reveal">Offre bêta exclusive</div>
+                <div class="s-label reveal d1">03 — Offre de lancement</div>
+                <h2 class="offer-title reveal d2">
+                    Une offre.<br>
+                    Trois places.<br>
+                    Un vrai <span style="color:#6b0e29">Partenariat.</span>
+                </h2>
+
+                <div class="offer-lines reveal d3">
+                    <p>Parce que je refuse de diluer mon attention sur dix clients à la fois, je n'accepte que <span style="color:#6b0e29;font-style:italic;font-weight:700;">trois collaborations simultanées.</span></p>
+                    <p>Chaque engagement est exclusif, profond et orienté vers des <span style="color:#6b0e29;font-style:italic;font-weight:700;">résultats mesurables.</span></p>
+                    <p>Ce n'est pas une prestation standardisée.</p>
+                    <p>C'est un <span style="color:#6b0e29;font-style:italic;font-weight:700;">partenariat stratégique</span> pensé pour vous, calibré sur vos objectifs, exécuté avec rigueur et constance.</p>
+                    <p>La candidature est <span style="color:#6b0e29;font-style:italic;font-weight:700;">obligatoire.</span></p>
+                    <p>Je sélectionne manuellement chaque client pour m'assurer d'un alignement réel et d'une capacité à vous apporter une valeur concrète.</p>
+                    <p><span style="color:#6b0e29;font-style:italic;font-weight:700;">Tous les profils ne sont pas acceptés.</span></p>
+                </div>
+
+                <a href="#diagnostic" class="offer-cta reveal d4">Candidater maintenant →</a>
+            </div>
+
+            <!-- COLONNE DROITE -->
+            <div class="offer-right reveal d2">
+                <div class="offer-card">
+                    <div class="offer-card-title">L'Offre en 6 Temps</div>
+                    <p class="offer-card-sub">6 étapes. 6 mois. Un accompagnement pensé de A à Z.</p>
+
+                    <div class="offer-steps">
+                        <div class="offer-step">
+                            <div class="step-num">01</div>
+                            <div class="step-title">Découverte & Diagnostic</div>
+                            <ul class="step-items">
+                                <li>Audit de votre présence actuelle + benchmark concurrentiel</li>
+                                <li>Questionnaire de marque approfondi</li>
+                            </ul>
+                        </div>
+                        <div class="offer-step">
+                            <div class="step-num">02</div>
+                            <div class="step-title">Stratégie</div>
+                            <ul class="step-items">
+                                <li>Positionnement éditorial, ton de voix, axes de communication</li>
+                                <li>Plan de contenu personnalisé sur toute la durée de la mission</li>
+                            </ul>
+                        </div>
+                        <div class="offer-step">
+                            <div class="step-num">03</div>
+                            <div class="step-title">Création</div>
+                            <ul class="step-items">
+                                <li>Shooting photo & vidéo mensuel inclus</li>
+                                <li>Contenus Instagram & TikTok créés et soumis à votre validation</li>
+                            </ul>
+                        </div>
+                        <div class="offer-step">
+                            <div class="step-num">04</div>
+                            <div class="step-title">Publication & Gestion</div>
+                            <ul class="step-items">
+                                <li>Calendrier éditorial géré intégralement</li>
+                                <li>Espace Notion personnalisé (dashboard, suivi, templates)</li>
+                            </ul>
+                        </div>
+                        <div class="offer-step">
+                            <div class="step-num">05</div>
+                            <div class="step-title">Suivi & Accompagnement</div>
+                            <ul class="step-items">
+                                <li>Accompagnement continu WhatsApp & email</li>
+                                <li>Disponibilité réelle, réponse sous 24h en jours ouvrés</li>
+                            </ul>
+                        </div>
+                        <div class="offer-step">
+                            <div class="step-num">06</div>
+                            <div class="step-title">Analyse & Continuité</div>
+                            <ul class="step-items">
+                                <li>Reporting mensuel clair, sans jargon</li>
+                                <li>Kit de Continuation sur-mesure remis en fin de mission</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="offer-engagement">
+                        Engagement minimum 3 mois · Places limitées
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     DIAGNOSTIC
+═══════════════════════════════════════ -->
+<section id="diagnostic">
+    <div class="s-inner">
+        <div class="diag-grid">
+            <div>
+                <div class="s-label reveal">04 — Diagnostic</div>
+                <h2 class="s-title reveal d1">Bénéficier<br>d'un diagnostic<br><span style="color:#6b0e29">gratuit.</span></h2>
+                <div class="divider reveal d2"></div>
+
+                <p class="form-intro reveal d2">
+                    En 30 minutes, j'analyse votre présence sociale actuelle et vous livre un rapport stratégique personnalisé : vos forces, vos lacunes et les trois actions prioritaires à mettre en place immédiatement.
+                </p>
+            </div>
+
+            <div class="reveal d2">
+                <form class="form" id="diagForm" novalidate>
+
+                    <div class="form-row" id="grp-nom">
+                        <div class="form-g">
+                            <label>Prénom</label>
+                            <input type="text" name="entry.1862262248" placeholder="Marie">
+                        </div>
+                        <div class="form-g">
+                            <label>Nom</label>
+                            <input type="text" name="entry.2121958875" placeholder="Dupont">
+                        </div>
+                    </div>
+                    <span class="field-err" id="err-nom"></span>
+
+                    <div class="form-g" id="grp-email">
+                        <label>Email</label>
+                        <input type="email" name="entry.2084193752" placeholder="marie@votreentreprise.fr">
+                        <span class="field-err" id="err-email"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-g">
+                            <label>Compte Instagram <span style="color:var(--gray);font-size:0.75em;letter-spacing:0;">(optionnel)</span></label>
+                            <input type="text" name="entry.1567837322" placeholder="@votrecompte">
+                        </div>
+                        <div class="form-g">
+                            <label>Compte TikTok <span style="color:var(--gray);font-size:0.75em;letter-spacing:0;">(optionnel)</span></label>
+                            <input type="text" name="entry.1430012372" placeholder="@votrecompte">
+                        </div>
+                    </div>
+
+                    <div class="form-g" id="grp-presence">
+                        <label>Êtes-vous présent(e) sur les réseaux actuellement ?</label>
+                        <div class="form-radio-group">
+                            <label class="form-radio"><input type="radio" name="entry.1969233992" value="Oui, de façon régulière"><span>Oui, de façon régulière</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.1969233992" value="Oui, mais de façon irrégulière"><span>Oui, mais irrégulièrement</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.1969233992" value="Non, pas du tout"><span>Non, pas du tout</span></label>
+                        </div>
+                        <span class="field-err" id="err-presence"></span>
+                    </div>
+
+                    <div class="form-g" id="grp-reseaux">
+                        <label>Sur quels réseaux êtes-vous présent(e) ?</label>
+                        <div class="form-check-group">
+                            <label class="form-check"><input type="checkbox" name="entry.1990552271" value="Instagram"><span>Instagram</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1990552271" value="TikTok"><span>TikTok</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1990552271" value="LinkedIn"><span>LinkedIn</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1990552271" value="Facebook"><span>Facebook</span></label>
+                        </div>
+                        <span class="field-err" id="err-reseaux"></span>
+                    </div>
+
+                    <div class="form-g" id="grp-blocage">
+                        <label>Principal blocage aujourd'hui</label>
+                        <div class="form-radio-group">
+                            <label class="form-radio"><input type="radio" name="entry.924375165" value="Je n'ai pas le temps"><span>Je n'ai pas le temps</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.924375165" value="Je ne sais pas quoi poster"><span>Je ne sais pas quoi poster</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.924375165" value="J'ai essayé mais j'ai abandonné"><span>J'ai essayé mais j'ai abandonné</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.924375165" value="Mon contenu ne génère pas de résultats"><span>Mon contenu ne génère pas de résultats</span></label>
+                            <label class="form-radio"><input type="radio" name="entry.924375165" value="Mon image en ligne ne me ressemble pas"><span>Mon image en ligne ne me ressemble pas</span></label>
+                        </div>
+                        <span class="field-err" id="err-blocage"></span>
+                    </div>
+
+                    <div class="form-g" id="grp-objectif">
+                        <label>Objectif principal</label>
+                        <div class="form-check-group">
+                            <label class="form-check"><input type="checkbox" name="entry.1677111033" value="Gagner en visibilité"><span>Gagner en visibilité</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1677111033" value="Attirer de nouveaux clients"><span>Attirer de nouveaux clients</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1677111033" value="Déléguer entièrement la gestion"><span>Déléguer entièrement la gestion</span></label>
+                            <label class="form-check"><input type="checkbox" name="entry.1677111033" value="Construire une image de marque cohérente"><span>Image de marque cohérente</span></label>
+                        </div>
+                        <span class="field-err" id="err-objectif"></span>
+                    </div>
+
+                    <div class="form-g">
+                        <label>Avez-vous déjà travaillé avec un community manager ?</label>
+                        <select name="entry.446242624">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Oui">Oui</option>
+                            <option value="Non">Non</option>
+                        </select>
+                    </div>
+
+                    <div class="form-g">
+                        <label>Décrivez votre situation et ce que vous aimeriez changer <span style="color:var(--gray);font-size:0.75em;letter-spacing:0;">(optionnel)</span></label>
+                        <textarea name="entry.927750546" placeholder="En quelques mots..." style="height:100px;"></textarea>
+                    </div>
+
+                    <span class="field-err" id="err-submit"></span>
+
+                    <button type="submit" class="btn-form" id="formBtn">
+                        <span id="formBtnTxt">Recevoir mon diagnostic →</span>
+                    </button>
+                </form>
+
+                <div class="diag-alt">
+                    <div class="diag-or"><span>ou</span></div>
+                    <p class="diag-alt-label">Vous préférez échanger directement ?</p>
+                    <a href="https://calendly.com/lenna-smm-pro/30min" target="_blank" class="diag-alt-btn">Réserver directement un appel →</a>
+                </div>
+
+                <div class="diag-success" id="diagSuccess">
+                    <div style="text-align:center; padding: 3rem 2rem 3.5rem;">
+                        <p style="font-family:'DM Sans',sans-serif; font-weight:200; font-size:clamp(1.2rem,2vw,1.6rem); letter-spacing:0.05em; color:#1c1c1e; margin-bottom:1.5rem; line-height:1.3;">
+                            Merci <span id="prenom-confirmation"></span>, votre demande a bien été reçue.
+                        </p>
+                        <div style="width:60px; height:1px; background:rgba(107,14,41,0.25); margin:0 auto 1.5rem;"></div>
+                        <p style="font-family:'DM Sans',sans-serif; font-weight:300; font-size:1.1rem; letter-spacing:0.03em; color:#5a5a5a; margin-bottom:1.2rem;">
+                            Plus qu'une étape : réservez votre appel découverte gratuit ci-dessous.
+                        </p>
+                        <p style="font-family:'DM Sans',sans-serif; font-weight:300; font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0; line-height:1.7;">
+                            <span style="color:#6b0e29;">Merci de sélectionner un créneau à partir de 48h après l'envoi du formulaire.</span><br>
+                            <span style="color:#999;">Cela me permet de préparer votre diagnostic personnalisé avant notre échange.</span>
+                        </p>
+                    </div>
+                    <div style="width:100%; overflow:hidden; min-height:700px;">
+                        <iframe
+                            src="https://calendly.com/lenna-smm-pro/30min?hide_gdpr_banner=1&background_color=faf7f5&text_color=0f0f0f&primary_color=6b0e29"
+                            width="100%"
+                            height="700"
+                            frameborder="0"
+                            style="border:none; display:block;">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FAQ
+═══════════════════════════════════════ -->
+<section id="faq">
+    <div class="s-inner">
+        <div class="faq-grid">
+            <div>
+                <div class="s-label reveal">05 — FAQ</div>
+                <h2 class="s-title reveal d1"><span style="color:#6b0e29">Questions</span><br>fréquentes.</h2>
+                <div class="divider reveal d2"></div>
+                <p class="faq-aside-note reveal d2">
+                    Une question spécifique ?<br>
+                    <a href="#diagnostic">Parlons-en directement →</a>
+                </p>
+            </div>
+
+            <div class="faq-list reveal d1">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Combien de temps avant de voir des résultats ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Les premiers résultats visibles apparaissent généralement entre la 4ème et la 8ème semaine : hausse de la portée organique, engagement plus qualifié, croissance en abonnés ciblés. Les résultats en conversion (demandes, ventes) suivent dans les 2 à 3 mois selon votre secteur et votre offre.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Quels réseaux sociaux gérez-vous ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Je me spécialise sur Instagram et TikTok, les deux plateformes à plus fort potentiel de croissance organique aujourd'hui.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Comment se passe la collaboration au quotidien ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Après un onboarding complet (audit + brief stratégique), vous recevez chaque semaine les contenus prêts à valider. Un point mensuel de 45 minutes permet d'ajuster la stratégie. Vous gardez le contrôle, je prends en charge l'exécution. Tout passe par votre espace Notion : calendrier éditorial, contenus à valider, reporting.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Pourquoi seulement 3 clients à la fois ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Parce que la qualité exige de la concentration. Gérer 15 clients, c'est produire du contenu industriel. Gérer 3, c'est créer quelque chose de véritablement personnalisé et performant. Mon objectif n'est pas de scaler mon volume. C'est de maximiser vos résultats.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Quel budget prévoir pour ce type de prestation ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Ce que vous investissez ici, vous le récupérez en visibilité, en clients et en temps libéré. Les tarifs sont présentés lors de l'appel découverte.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">
+                        <span class="faq-q-text">Mon secteur est-il compatible avec votre approche ?</span>
+                        <div class="faq-ico"></div>
+                    </div>
+                    <div class="faq-ans">
+                        <div class="faq-ans-inner">Je travaille avec des entrepreneurs et des indépendants qui ont une vraie valeur à montrer, peu importe le secteur. Mode, lifestyle, coaching, food, beauté, bien-être, artisanat, consulting.<br>Votre activité mérite d'être vue, on a probablement quelque chose à construire ensemble.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     À PROPOS
+═══════════════════════════════════════ -->
+<section id="apropos">
+    <div class="s-inner">
+        <div class="about-grid">
+            <div class="about-frame reveal">
+                <div class="about-photo">
+                    <img src="images/LENNA BENALOUI.png" alt="Lenna Benaloui — Social Media Manager" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+                </div>
+            </div>
+
+            <div>
+                <div class="s-label reveal">06 — À propos</div>
+                <h2 class="s-title reveal d1">Qui <span style="color:#6b0e29">suis-je ?</span></h2>
+                <div class="divider reveal d2"></div>
+
+                <p class="about-txt reveal d2">J'ai 23 ans, je m'appelle Lenna.</p>
+                <br>
+                <p class="about-txt reveal d2"><span style="color:#6b0e29;">On ne m'a jamais donné ma chance. Alors je me la suis créée.</span></p>
+                <br>
+                <p class="about-txt reveal d3">En avril 2026, tout a basculé du jour au lendemain. J'aurais pu appeler ça un échec. J'ai choisi d'y voir un signe.</p>
+                <br>
+                <p class="about-txt reveal d3">Étudiante en Marketing Digital et Communication depuis 2024, j'ai construit mes premières expériences en alternance au contact de marques qui avaient une vraie histoire à raconter mais ne savaient pas comment la montrer.</p>
+                <br>
+                <p class="about-txt reveal d3">C'est là que j'ai compris quelque chose d'essentiel : la qualité de votre travail ne suffit pas si personne ne la voit.</p>
+                <br>
+                <p class="about-txt reveal d4" style="font-family:'Playfair Display',serif;font-style:italic;color:#6b0e29;">La peur est la sœur du courage. Je voulais être freelance depuis longtemps. La peur me retenait.</p>
+                <br>
+                <p class="about-txt reveal d4">Il était temps d'écrire mon histoire.</p>
+                <br>
+                <p class="about-txt reveal d4"><span style="color:#6b0e29;">Je construis ma place. Je vais vous aider à construire la vôtre.</span></p>
+
+                <div class="about-sig reveal d5">Lenna</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+    <img src="images/logo gpt.png" alt="SMM.LENNA" style="height:50px;width:auto;object-fit:contain;">
+    <a href="mailto:lenna.smm.pro@gmail.com" class="f-email">lenna.smm.pro@gmail.com</a>
+    <div class="f-socials">
+        <a href="https://www.instagram.com/smm.lenna/" target="_blank">Instagram</a>
+        <span>·</span>
+        <a href="https://www.tiktok.com/@smm.lenna?_r=1&_t=ZN-97TYt1DTVnq" target="_blank">TikTok</a>
+    </div>
+    <div class="f-copy">© 2026 Lenna — Tous droits réservés</div>
+</footer>
+
+
+<script>
+    /* ─── Header scroll ─── */
+    const hdr = document.getElementById('hdr');
+    window.addEventListener('scroll', () => {
+        hdr.classList.toggle('scrolled', window.scrollY > 40);
+        updateActiveNav();
+    }, { passive: true });
+
+    /* ─── Active nav link ─── */
+    /* ─── Diagnostic form — validation + Google Form no-cors ─── */
+    (function () {
+        const form = document.getElementById('diagForm');
+        if (!form) return;
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function setErr(errId, grpId, msg) {
+            const span = document.getElementById(errId);
+            const grp  = grpId ? document.getElementById(grpId) : null;
+            if (span) { span.innerHTML = '⚠ ' + msg; span.classList.add('visible'); }
+            if (grp)  {
+                grp.classList.remove('grp-err');
+                void grp.offsetWidth;
+                grp.classList.add('grp-err');
+            }
+            return span;
+        }
+
+        function clearErr(errId, grpId) {
+            document.getElementById(errId)?.classList.remove('visible');
+            if (grpId) document.getElementById(grpId)?.classList.remove('grp-err');
+        }
+
+        function validate() {
+            const errors = [];
+            const prenom = form.querySelector('[name="entry.1862262248"]');
+            const nom    = form.querySelector('[name="entry.2121958875"]');
+            if (!prenom.value.trim() || !nom.value.trim())
+                errors.push(setErr('err-nom', 'grp-nom', 'Veuillez renseigner votre prénom et nom.'));
+            else clearErr('err-nom', 'grp-nom');
+
+            const email = form.querySelector('[name="entry.2084193752"]');
+            if (!email.value.trim())
+                errors.push(setErr('err-email', 'grp-email', 'Veuillez renseigner votre adresse email.'));
+            else if (!EMAIL_RE.test(email.value))
+                errors.push(setErr('err-email', 'grp-email', 'Cette adresse email ne semble pas valide. Exemple : nom@domaine.fr'));
+            else clearErr('err-email', 'grp-email');
+
+            if (!form.querySelector('[name="entry.1969233992"]:checked'))
+                errors.push(setErr('err-presence', 'grp-presence', 'Veuillez sélectionner votre situation.'));
+            else clearErr('err-presence', 'grp-presence');
+
+            if (!form.querySelector('[name="entry.1990552271"]:checked'))
+                errors.push(setErr('err-reseaux', 'grp-reseaux', 'Veuillez sélectionner au moins un réseau social.'));
+            else clearErr('err-reseaux', 'grp-reseaux');
+
+            if (!form.querySelector('[name="entry.924375165"]:checked'))
+                errors.push(setErr('err-blocage', 'grp-blocage', 'Veuillez sélectionner votre principal blocage.'));
+            else clearErr('err-blocage', 'grp-blocage');
+
+            if (!form.querySelector('[name="entry.1677111033"]:checked'))
+                errors.push(setErr('err-objectif', 'grp-objectif', 'Veuillez indiquer votre objectif principal.'));
+            else clearErr('err-objectif', 'grp-objectif');
+
+
+            return errors.filter(Boolean);
+        }
+
+        /* Temps réel : efface l'erreur dès que le champ est valide */
+        form.querySelector('[name="entry.1862262248"]').addEventListener('input', () => {
+            if (form.querySelector('[name="entry.1862262248"]').value.trim() &&
+                form.querySelector('[name="entry.2121958875"]').value.trim())
+                clearErr('err-nom', 'grp-nom');
+        });
+        form.querySelector('[name="entry.2121958875"]').addEventListener('input', () => {
+            if (form.querySelector('[name="entry.1862262248"]').value.trim() &&
+                form.querySelector('[name="entry.2121958875"]').value.trim())
+                clearErr('err-nom', 'grp-nom');
+        });
+        form.querySelector('[name="entry.2084193752"]').addEventListener('input', function () {
+            if (EMAIL_RE.test(this.value)) clearErr('err-email', 'grp-email');
+        });
+        form.querySelectorAll('[name="entry.1969233992"]').forEach(r =>
+            r.addEventListener('change', () => clearErr('err-presence', 'grp-presence')));
+        form.querySelectorAll('[name="entry.1990552271"]').forEach(cb =>
+            cb.addEventListener('change', () => {
+                if (form.querySelector('[name="entry.1990552271"]:checked'))
+                    clearErr('err-reseaux', 'grp-reseaux');
+            }));
+        form.querySelectorAll('[name="entry.924375165"]').forEach(r =>
+            r.addEventListener('change', () => clearErr('err-blocage', 'grp-blocage')));
+        form.querySelectorAll('[name="entry.1677111033"]').forEach(cb =>
+            cb.addEventListener('change', () => {
+                if (form.querySelector('[name="entry.1677111033"]:checked'))
+                    clearErr('err-objectif', 'grp-objectif');
+            }));
+
+        /* Soumission */
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            clearErr('err-submit', null);
+            const errors = validate();
+            if (errors.length) {
+                const y = errors[0].getBoundingClientRect().top + window.scrollY - 100;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+                return;
+            }
+            const btn = document.getElementById('formBtn');
+            const txt = document.getElementById('formBtnTxt');
+            btn.disabled = true;
+            txt.textContent = 'Envoi en cours…';
+            const prenom = form.querySelector('[name="entry.1862262248"]').value.trim();
+            try {
+                await fetch(
+                    'https://docs.google.com/forms/d/e/1FAIpQLSd200xa6ro3sV0FapNlCNIUEdnrW2bS7LsjuwQtJHraNumdhg/formResponse',
+                    { method: 'POST', mode: 'no-cors', body: new FormData(form) }
+                );
+                form.style.display = 'none';
+                const ok = document.getElementById('diagSuccess');
+                document.getElementById('prenom-confirmation').textContent = prenom;
+                ok.classList.add('visible');
+                ok.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch (_) {
+                btn.disabled = false;
+                txt.textContent = 'Recevoir mon diagnostic →';
+                setErr('err-submit', null, 'Une erreur est survenue. Réessayez ou contactez-moi directement.');
+            }
+        });
+    })();
+
+    const sections = ['accueil','problemes','offre','diagnostic','faq','apropos'];
+    function updateActiveNav() {
+        let current = 'accueil';
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 100) current = id;
+        });
+        document.querySelectorAll('#nav-d a:not(.nav-cta)').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+    }
+
+    /* ─── Scroll reveal ─── */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ─── Spots bar ─── */
+    const sfEl = document.getElementById('sf');
+    const spotsIO = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) sfEl.classList.add('go'); });
+    }, { threshold: 0.5 });
+    if (sfEl) spotsIO.observe(sfEl);
+
+    /* ─── Mobile nav ─── */
+    function toggleNav() {
+        const ham = document.getElementById('ham');
+        const nav = document.getElementById('nav-m');
+        ham.classList.toggle('open');
+        nav.classList.toggle('open');
+        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    }
+    function closeNav() {
+        document.getElementById('ham').classList.remove('open');
+        document.getElementById('nav-m').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    /* ─── FAQ accordion ─── */
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    }
+
+    /* ─── Offer card immersive animations ─── */
+    (function () {
+        const offerCard = document.querySelector('.offer-card');
+        if (!offerCard) return;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function animateCounter(el, target, duration) {
+            if (reduced) { el.textContent = String(target).padStart(2, '0'); return; }
+            const t0 = performance.now();
+            (function tick(now) {
+                const p = Math.min((now - t0) / duration, 1);
+                el.textContent = String(Math.floor(p * target)).padStart(2, '0');
+                p < 1 ? requestAnimationFrame(tick) : (el.textContent = String(target).padStart(2, '0'));
+            })(t0);
+        }
+
+        const io = new IntersectionObserver((entries) => {
+            if (!entries[0].isIntersecting) return;
+            const steps = offerCard.querySelectorAll('.offer-step');
+
+            // 1. Border-top sweep
+            setTimeout(() => offerCard.classList.add('border-animated'), reduced ? 0 : 60);
+
+            // 2 & 3. Counters + separator draw per step
+            steps.forEach((step, i) => {
+                const d = reduced ? 0 : i * 120;
+                setTimeout(() => animateCounter(step.querySelector('.step-num'), i + 1, 480), d);
+                setTimeout(() => step.classList.add('sep-animated'), d + (reduced ? 0 : 150));
+            });
+
+            // 6. Engagement badge fade-in last
+            setTimeout(() => {
+                offerCard.querySelector('.offer-engagement')?.classList.add('fade-in');
+            }, reduced ? 0 : steps.length * 120 + 420);
+
+            io.disconnect();
+        }, { threshold: 0.15 });
+
+        io.observe(offerCard);
+    })();
+
+    /* ─── Card expand on click ─── */
+    document.querySelectorAll('.prob-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const isActive = card.classList.contains('active');
+            document.querySelectorAll('.prob-card').forEach(c => c.classList.remove('active', 'dimmed'));
+            if (!isActive) {
+                card.classList.add('active');
+                document.querySelectorAll('.prob-card').forEach(c => {
+                    if (c !== card) c.classList.add('dimmed');
+                });
+            }
+        });
+    });
+
+
+    /* ─── Scroll progress bar ─── */
+    (function () {
+        const bar = document.getElementById('scroll-progress');
+        if (!bar) return;
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            if (max <= 0) return;
+            bar.style.width = (window.scrollY / max * 100) + '%';
+        }, { passive: true });
+    })();
+
+    /* ─── Custom cursor ─── */
+    (function () {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const cur = document.createElement('div');
+        cur.className = 'cursor is-hidden';
+        document.body.appendChild(cur);
+
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let cx = mx, cy = my;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cur.classList.remove('is-hidden');
+            if (!document.body.classList.contains('cursor-ready'))
+                document.body.classList.add('cursor-ready');
+        });
+        document.addEventListener('mouseleave', () => cur.classList.add('is-hidden'));
+
+        const hoverSel = 'a, button, .prob-card, .offer-step, .faq-q, .form-radio, .form-check, label, .pt-cta, .diag-alt-btn';
+        document.querySelectorAll(hoverSel).forEach(el => {
+            el.addEventListener('mouseenter', () => cur.classList.add('is-hover'));
+            el.addEventListener('mouseleave', () => cur.classList.remove('is-hover'));
+        });
+
+        (function loop() {
+            cx += (mx - cx) * 0.12;
+            cy += (my - cy) * 0.12;
+            cur.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+            requestAnimationFrame(loop);
+        })();
+    })();
+
+
+    /* ─── Ripple on CTA buttons ─── */
+    (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const sel = '.btn-form, .btn-p, .offer-cta, .nav-cta, .pt-cta, .diag-alt-btn';
+        document.querySelectorAll(sel).forEach(btn => {
+            if (getComputedStyle(btn).position === 'static') btn.style.position = 'relative';
+            btn.style.overflow = 'hidden';
+            btn.addEventListener('click', function (e) {
+                const rect = btn.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const wave = document.createElement('span');
+                wave.className = 'ripple-wave';
+                wave.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px;`;
+                btn.appendChild(wave);
+                wave.addEventListener('animationend', () => wave.remove());
+            });
+        });
+    })();
+
+    /* ─── Animated counters (data-count attribute) ─── */
+    (function () {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const counters = document.querySelectorAll('[data-count]');
+        if (!counters.length) return;
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = +el.dataset.count;
+                if (reduced) { el.textContent = target; io.unobserve(el); return; }
+                const t0 = performance.now();
+                (function tick(now) {
+                    const p = Math.min((now - t0) / 1500, 1);
+                    const ease = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(ease * target);
+                    p < 1 ? requestAnimationFrame(tick) : io.unobserve(el);
+                })(t0);
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(el => io.observe(el));
+    })();
+
+</script>
+</body>
+</html>
